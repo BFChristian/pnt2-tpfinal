@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <template>
     <header>
 
@@ -11,6 +7,10 @@
 
     </main>
 </template>
+
+<script>
+
+</script>
 
 <style scoped>
 </style>
