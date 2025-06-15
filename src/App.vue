@@ -15,13 +15,11 @@
 <script>
 /* componentes de simple archivo (template, script y style) */
 import Navbar from './components/Navbar.vue'
-import Card from './components/Card.vue';
 
 export default {
   name: 'app',
   components: {
-    Navbar,
-    Card
+    Navbar
   }
 }
 </script>

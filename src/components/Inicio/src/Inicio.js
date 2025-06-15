@@ -1,5 +1,11 @@
+import Catalogo from "@/components/Catalogo.vue"
+
 export default {
     name: 'inicio',
+    components: {
+        // Aquí puedes registrar otros componentes si es necesario
+        Catalogo
+    },
     props: [],
     data() {
         return {

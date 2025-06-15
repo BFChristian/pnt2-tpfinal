@@ -1,13 +1,9 @@
 <template>
     <div class="container">
-    <div class="row">
-      <Card
-        v-for="libro in libros"
-        :key="libro.id"
-        :libroData="libro"
-      />
+        <div class="row">
+            <Card v-for="libro in libros" :key="libro.id" :libroData="libro" />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -24,15 +20,52 @@ export default {
     data() {
         return {
             // Aquí puedes definir tus datos reactivos
-            libros: []
+            libros: [
+                {
+                    id: 1,
+                    titulo: '1984',
+                    autor: 'George Orwell',
+                    descripcion: 'Una novela distópica',
+                    portada: 'https://via.placeholder.com/300x200'
+                },
+                {
+                    id: 2,
+                    titulo: '1984',
+                    autor: 'George Orwell',
+                    descripcion: 'Una novela distópica',
+                    portada: 'https://via.placeholder.com/300x200'
+                },
+                {
+                    id: 3,
+                    titulo: '1984',
+                    autor: 'George Orwell',
+                    descripcion: 'Una novela distópica',
+                    portada: 'https://via.placeholder.com/300x200'
+                },
+                {
+                    id: 4,
+                    titulo: '1984',
+                    autor: 'George Orwell',
+                    descripcion: 'Una novela distópica',
+                    portada: 'https://via.placeholder.com/300x200'
+                },
+                {
+                    id: 5,
+                    titulo: 'El Principito',
+                    autor: 'Antoine de Saint-Exupéry',
+                    descripcion: 'Un clásico de la literatura',
+                    portada: 'https://via.placeholder.com/300x200'
+                }
+            ]
         }
     },
     methods: {
         // Aquí puedes definir tus métodos
-        async obtenerLibros(){
+        /*
+        async obtenerLibros() {
             const response = await getLibros();
             this.libros = response.data;
-        }
+        }*/
     },
     computed: {
         // Aquí puedes definir tus propiedades computadas
@@ -40,5 +73,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
