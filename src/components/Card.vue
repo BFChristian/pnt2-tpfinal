@@ -1,6 +1,6 @@
 <template>
-    <div class="card" style="width: 18rem;">
-        <img :src="libroData.portada" class="card-img-top" alt="...">
+    <div class="card h-100">
+        <img :src="libroData.portada" @error="errorImagen" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{this.libroData.titulo}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{this.libroData.autor}}</h6>
@@ -26,6 +26,9 @@ export default {
     },
     methods: {
         // Aquí puedes definir tus métodos
+        errorImagen(event) {
+            event.target.src = '/no-disponible.webp';
+        }
     },
     computed: {
         // Aquí puedes definir tus propiedades computadas
