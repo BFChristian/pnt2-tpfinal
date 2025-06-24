@@ -4,8 +4,13 @@
       <div class="border p-3 h-100 overflow-auto">
         <div v-for="(reseña, index) in reseñas" :key="index" class="mb-3">
           <h5>
+            <!--  por ahora esto muestra solo el id del libro y el usuario  -->
             <p class="text-muted">{{ reseña.libroId }}</p>
             <p class="text-muted">por {{ reseña.usuarioId }}</p>
+
+            <!--  esto deberia buscarlo del back?  -->
+            <!--<p class="text-muted">{{ getLibroPorId(reseña.libroId) }}</p>-->
+            <!--<p class="text-muted">por {{ getUsuarioPorId(reseña.usuarioId) }}</p> -->
           </h5>
           <p>⭐ {{ reseña.rating }} / 5</p>
           <p class="mb-0">"{{ reseña.comentarios }}"</p>
@@ -17,6 +22,8 @@
 </template>
 
 <script>
+import { getLibroPorId } from "@/services/libros";
+import { getUsuarioPorId } from "@/services/usuarios";
 export default {
   name: "opiniones",
   props: [],
@@ -122,8 +129,7 @@ export default {
     }, 3000); // cada 3 segundos
   },
   methods: {},
-  computed: {
-  },
+  computed: {},
 };
 </script>
 
