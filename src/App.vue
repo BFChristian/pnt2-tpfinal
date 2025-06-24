@@ -14,14 +14,19 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
+import Navbar from "./components/Navbar.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    Navbar
-  }
-}
+    Navbar,
+  },
+  methods: {
+    accionDelLogo() {
+      this.$router.push('/usuario')
+    },
+  },
+};
 </script>
 
 <style scoped></style>

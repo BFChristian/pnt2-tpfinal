@@ -1,3 +1,115 @@
-<script>
-    
-</script>
+export default {
+  name: "usuario",
+
+  data() {
+    return {
+      usuarios: [
+        {
+          id: 1,
+          nombre: "lucia_mendez",
+          correo: "lucia_mendez@mail.com",
+          contraseña: "dK9zLm8q",
+          favoritos: [5, 17, 8],
+        },
+        {
+          id: 2,
+          nombre: "tomás_arias",
+          correo: "tomas_arias@mail.com",
+          contraseña: "Qp3jZm45kL",
+          favoritos: [1, 11, 14, 22],
+        },
+        {
+          id: 3,
+          nombre: "noelia_fernandez",
+          correo: "noelia_fernandez@mail.com",
+          contraseña: "8xK3mWz0",
+          favoritos: [],
+        },
+        {
+          id: 4,
+          nombre: "matias_ruiz",
+          correo: "matias_ruiz@mail.com",
+          contraseña: "ptk4LcXw",
+          favoritos: [3, 6],
+        },
+        {
+          id: 5,
+          nombre: "valentina_rojas",
+          correo: "valentina_rojas@mail.com",
+          contraseña: "L9wmpt32vZ",
+          favoritos: [25, 19, 4, 16, 12],
+        },
+        {
+          id: 6,
+          nombre: "emiliano_gomez",
+          correo: "emiliano_gomez@mail.com",
+          contraseña: "Yc8mZ2pw",
+          favoritos: [2],
+        },
+        {
+          id: 7,
+          nombre: "julieta_castro",
+          correo: "julieta_castro@mail.com",
+          contraseña: "bkT7zRlmWq",
+          favoritos: [7, 10, 18, 24],
+        },
+        {
+          id: 8,
+          nombre: "facundo_diaz",
+          correo: "facundo_diaz@mail.com",
+          contraseña: "V3mtLszc",
+          favoritos: [],
+        },
+        {
+          id: 9,
+          nombre: "camila_perez",
+          correo: "camila_perez@mail.com",
+          contraseña: "Xz98lkWy",
+          favoritos: [1, 9, 13, 21, 23, 20],
+        },
+        {
+          id: 10,
+          nombre: "bruno_ortiz",
+          correo: "bruno_ortiz@mail.com",
+          contraseña: "hL2p9sTK",
+          favoritos: [5],
+        },
+        {
+          id: 11,
+          nombre: "micaela_rios",
+          correo: "micaela_rios@mail.com",
+          contraseña: "3qW9ztMl",
+          favoritos: [11, 22, 14, 19, 3],
+        },
+        {
+          id: 12,
+          nombre: "sebastian_lopez",
+          correo: "sebastian_lopez@mail.com",
+          contraseña: "Tx4vmnLqPz",
+          favoritos: [6, 8, 25],
+        },
+        {
+          id: 13,
+          nombre: "florencia_garcia",
+          correo: "florencia_garcia@mail.com",
+          contraseña: "BzL9kpV3",
+          favoritos: [15, 20],
+        },
+        {
+          id: 14,
+          nombre: "agustin_molina",
+          correo: "agustin_molina@mail.com",
+          contraseña: "ytWpLxmz",
+          favoritos: [17, 12, 4],
+        },
+        {
+          id: 15,
+          nombre: "sofia_sanchez",
+          correo: "sofia_sanchez@mail.com",
+          contraseña: "Gz8TpLrqkX",
+          favoritos: [],
+        },
+      ],
+    };
+  },
+};
