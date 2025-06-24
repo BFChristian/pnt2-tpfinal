@@ -305,10 +305,15 @@ export default {
   },
   methods: {
     /*
-        async obtenerLibros() {
-            const response = await getLibros();
-            this.libros = response.data;
-        }*/
+    async obtenerLibros() {
+      const responseL = await getLibros();
+      const responseA = await getAutores();
+      const responseG = await getGeneros();
+      this.libros = responseL.data;
+      this.autores = responseA.data;
+      this.generos = responseG.data;
+    },
+    */
   },
   computed: {},
 };

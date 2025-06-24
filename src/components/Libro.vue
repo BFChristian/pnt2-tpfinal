@@ -23,7 +23,7 @@
 <script>
 export default {
     name: 'libro',
-    props: [],
+    props: [/*aca deberia llegar la id del libro?*/],
     data() {
         return {
             libro: {
