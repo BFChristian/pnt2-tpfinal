@@ -19,6 +19,7 @@ export default {
     props: [],
     data() {
         return {
+           currentIndex: 0, // Agrego esta inicialización, para que no falle al primer acceso.
             reseñas: [
                 {
                     "titulo": "El arte de la guerra",
@@ -74,7 +75,7 @@ export default {
     mounted() {
         setInterval(() => {
             this.currentIndex =
-                (this.currentIndex + 1) % this.resenas.length;
+                (this.currentIndex + 1) % this.reseñas.length;
         }, 3000); // cada 3 segundos
     },
     methods: {
