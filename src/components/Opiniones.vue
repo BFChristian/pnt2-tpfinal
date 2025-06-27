@@ -4,7 +4,6 @@
       <div class="border p-3 h-100 overflow-auto">
         <div v-for="(reseña, index) in reseñas" :key="index" class="mb-3">
           <h5>
-            <!--  por ahora esto muestra solo el id del libro y el usuario  -->
             <p class="text-muted">{{ buscarLibroPorId(reseña.libroId) }}</p>
           </h5>
           <p>⭐ {{ reseña.rating }} / 5</p>
@@ -18,7 +17,7 @@
 
 <script>
 import { getReseñas } from "@/services/reseñas";
-import { getLibros } from "@/services/libros";
+import { useLibros } from "@/store/libros"
 
 export default {
   name: "opiniones",
@@ -26,7 +25,6 @@ export default {
   data() {
     return {
       reseñas: [],
-      libros: [],
     };
   },
   mounted() {
@@ -34,23 +32,17 @@ export default {
       this.reseñas = response;
       this.currentIndex = 0;
     }),
-      getLibros().then((response) => {
-        this.libros = response;
-      });
-    setInterval(() => {
-      if (this.reseñas)
-        this.currentIndex = (this.currentIndex + 1) % this.reseñas.lenght;
-    }, 3000);
+      setInterval(() => {
+        if (this.reseñas)
+          this.currentIndex = (this.currentIndex + 1) % this.reseñas.lenght;
+      }, 3000);
   },
-  methods: {},
-  computed: {
-    buscarLibroPorId() {
-      return (id) => {
-        const libro = this.libros.find((libro) => libro.id === id);
-        return libro ? libro.titulo : "Libro no encontrado";
-      };
+  methods: {
+    buscarLibroPorId(libroId) {
+      return useLibros().libros.find((libro) => libro.id === libroId)?.titulo || "Libro no encontrado";
     },
   },
+  computed: {},
 };
 </script>
 

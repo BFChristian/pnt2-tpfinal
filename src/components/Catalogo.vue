@@ -1,29 +1,21 @@
 <template>
   <div class="container">
     <div class="row overflow-auto">
-      <div class="col-md-4 mb-4" v-for="libro in this.libros" :key="libro">
-        <div v-for="autor in this.autores" :key="autor">
-          <div v-for="genero in this.generos" :key="genero">
-            <div
-              v-if="libro.autorId == autor.id && libro.generoId == genero.id"
-            >
-              <Card
-                :libroData="libro"
-                :autorData="autor"
-                :generoData="genero"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="col-md-4 mb-4" v-for="libro in getLibros" :key="libro.id">
+        <Card
+          :libroData="buscarLibro(libro.id)"
+          :autorData="buscarAutor(libro.autorId)"
+          :generoData="buscarGenero(libro.generoId)"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getLibros } from "@/services/libros";
-import { getAutores } from "@/services/autores";
-import { getGeneros } from "@/services/generos";
+import { useLibros } from "@/store/libros";
+import { getAutoresPorId } from "@/services/autores";
+import { getGenerosPorId } from "@/services/generos";
 import Card from "./Card.vue";
 
 export default {
@@ -33,24 +25,30 @@ export default {
   },
   props: [],
   data() {
-    return {
-      libros: [],
-      autores: [],
-      generos: [],
-    };
+    return {};
   },
-  methods: {},
-  computed: {},
+  computed: {
+    getLibros() {
+      return useLibros().libros;
+    },
+  },
+  methods: {
+    buscarAutor(id) {
+      return getAutoresPorId(id);
+    },
+    buscarGenero(id) {
+      return getGenerosPorId(id);
+    },
+    buscarLibro(id) {
+      return useLibros().libros.find((libro) => libro.id === id);
+    },
+  },
   mounted() {
-    getLibros().then((response) => {
-      this.libros = response;
-    });
-    getAutores().then((response) => {
-      this.autores = response;
-    });
-    getGeneros().then((response) => {
-      this.generos = response;
-    });
+    useLibros()
+      .cargarLibros()
+      .catch((error) => {
+        console.error("Error al cargar los libros:", error);
+      });
   },
 };
 </script>

@@ -3,7 +3,6 @@ import datos from '../assets/autores.json';
 export const getAutores = async () => {
     try {
         const response = await datos;
-        console.log('Autores obtenidos:', response);
         return response;
     } catch (error) {
         console.error('Error al obtener los autores:', error);

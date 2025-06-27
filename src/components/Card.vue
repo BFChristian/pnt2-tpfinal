@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { useLibro } from "@/store/libro";
+import { useLibroId } from "@/store/libroId";
 
 export default {
   name: "card",
@@ -48,10 +48,7 @@ export default {
   },
   methods: {
     goToLibro() {
-      const store = useLibro();
-      store.libroData = this.libroData;
-      store.autorData = this.autorData;
-      store.generoData = this.generoData;
+      useLibroId().id = this.libroData.id;
       this.$router.push("/libro");
     },
     errorImagen(event) {
