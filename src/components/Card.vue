@@ -11,21 +11,18 @@
       <h6 class="card-subtitle mb-2 text-body-secondary">
         {{ this.libroData.autor }}
       </h6>
-      <p class="card-text">
+
+      <p v-if="!texto" class="card-text">
         {{ this.libroData.descripcion.slice(0, 60).trim() }}...
       </p>
-
+      <p v-else class="card-text">
+        {{ this.libroData.descripcion }}
+      </p>
       <a
-        v-if="libroData.previewLink"
-        :href="libroData.previewLink"
-        target="_blank"
-        rel="noopener noreferrer"
+        @click="texto = !texto"
         class="btn btn-primary"
       >
         📖 Más información
-      </a>
-      <a v-else href="#" class="btn btn-secondary disabled">
-        Sin vista previa
       </a>
     </div>
   </div>
@@ -45,7 +42,7 @@ export default {
   },
   data() {
     return {
-      guardado: false,
+      texto: false,
     };
   },
   methods: {
@@ -71,9 +68,6 @@ export default {
         alert("❌ No se pudo guardar el libro.");
       }
     },
-  },
-  computed: {
-    // Aquí puedes definir tus propiedades computadas
   },
 };
 </script>
