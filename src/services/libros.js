@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 // const API_URL = 'https://64f8b230824680fd218f9e5f.mockapi.io/api/libros'; 
-const API_URL = 'https://mockapi.io/projects/684b6a3b165d05c5d35c6703';
+const API_URL = 'https://684b6a3b165d05c5d35c6702.mockapi.io/Libros';
 
 
 
 export const guardarLibro = async (libro) => {
     try {
         const response = await axios.post(API_URL, libro);
+        
         return response.data;
     } catch (error) {
         console.error('❌ Error al guardar el libro:', error);
@@ -17,6 +18,7 @@ export const guardarLibro = async (libro) => {
 export const getLibros = async () => {
     try {
         const response = await axios.get(API_URL);
+        console.log('Libros obtenidos:', response.data);
         return response.data;
     } catch (error) {
         console.error('Error al obtener los libros:', error);

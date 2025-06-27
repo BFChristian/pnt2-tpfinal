@@ -14,13 +14,17 @@
       <h6 class="card-subtitle mb-2 text-body-secondary">
         {{ this.generoData.nombre }}
       </h6>
-      <p class="card-text">{{ this.libroData.descripcion }}</p>
-      <a href="#" class="btn btn-primary">mas informacion</a>
+      <p class="card-text">
+        {{ this.libroData.descripcion.slice(0, 60).trim() }}...
+      </p>
+      <a @click="goToLibro" class="btn btn-primary">mas informacion</a>
     </div>
   </div>
 </template>
 
 <script>
+import { useLibro } from "@/store/libro";
+
 export default {
   name: "card",
   props: {
@@ -43,7 +47,13 @@ export default {
     };
   },
   methods: {
-    // Aquí puedes definir tus métodos
+    goToLibro() {
+      const store = useLibro();
+      store.libroData = this.libroData;
+      store.autorData = this.autorData;
+      store.generoData = this.generoData;
+      this.$router.push("/libro");
+    },
     errorImagen(event) {
       event.target.src = "/no-disponible.webp";
     },
