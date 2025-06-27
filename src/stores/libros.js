@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { getLibros } from "@/services/libros";
+import { eliminarLibro } from "@/services/libros";
 
 export const useLibroStore = defineStore("libros", {
   state: () => ({
@@ -15,8 +16,8 @@ export const useLibroStore = defineStore("libros", {
     },
     async eliminarLibroStore(id) {
       try {
-        await eliminarLibro(id);
         this.lista = this.lista.filter((libro) => libro.id !== id);
+        await eliminarLibro(id);
         alert("Libro eliminado correctamente.");
       } catch (error) {
         console.error("❌ Error al eliminar el libro:", error);
