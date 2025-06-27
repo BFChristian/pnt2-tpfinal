@@ -13,58 +13,52 @@
 </template>
 
 <script>
-import { buscarLibros } from '@/services/posts'
-import { useFiltroStore } from '@/stores/filtros'
-import { storeToRefs } from 'pinia'
-import Card from './Card.vue'
+import { getLibros } from "@/services/libros";
+import { useFiltroStore } from "@/stores/filtros";
+import { storeToRefs } from "pinia";
+import Card from "./Card.vue";
 
 export default {
-  name: 'catalogo',
+  name: "catalogo",
   components: {
-    Card
+    Card,
   },
   data() {
     return {
       libros: [],
-      filtroStore: useFiltroStore()
-    }
+      filtroStore: useFiltroStore(),
+    };
   },
   computed: {
-    autor() {
-      return storeToRefs(this.filtroStore).autor.value
+    titulo() {
+      return storeToRefs(this.filtroStore).titulo.value;
     },
-    genero() {
-      return storeToRefs(this.filtroStore).genero.value
+    autor() {
+      return storeToRefs(this.filtroStore).autor.value;
     },
     librosFiltrados() {
-      return this.libros.filter(libro => {
-        const coincideAutor = !this.autor || libro.autor.toLowerCase().includes(this.autor)
-        const coincideGenero = !this.genero || libro.descripcion.toLowerCase().includes(this.genero)
-        return coincideAutor && coincideGenero
-      })
-    }
+      return this.libros.filter((libro) => {
+        const coincideTitulo = !this.titulo || libro.titulo.includes(this.titulo);
+        const coincideAutor = !this.autor || libro.autor.includes(this.autor);
+        return coincideAutor && coincideTitulo;
+      });
+    },
   },
   methods: {
     async obtenerLibros() {
       try {
-        const datos = await buscarLibros('a')
-        this.libros = datos.map(libro => ({
-          id: libro.id,
-          titulo: libro.volumeInfo.title,
-          autor: libro.volumeInfo.authors?.join(', ') || 'Autor desconocido',
-          descripcion: libro.volumeInfo.description || 'Sin descripción',
-          portada: libro.volumeInfo.imageLinks?.thumbnail || '',
-          previewLink: libro.volumeInfo.previewLink || null
-        }))
+        getLibros().then((response) => {
+          this.libros = response;
+        });
       } catch (error) {
-        console.error('❌ Error al obtener libros:', error)
+        console.error("❌ Error al obtener libros:", error);
       }
-    }
+    },
   },
   mounted() {
-    this.obtenerLibros()
-  }
-}
+    this.obtenerLibros();
+  },
+};
 </script>
 
 <style scoped></style>
