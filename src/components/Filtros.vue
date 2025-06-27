@@ -9,13 +9,12 @@
     />
 
     <h6 class="mt-3">Filtrar por género</h6>
-    <select v-model="genero" class="form-select">
-      <option value="">Todos</option>
-      <option value="Novela">Novela</option>
-      <option value="Estrategia">Estrategia</option>
-      <option value="Ficción">Ficción</option>
-      <option value="Ciencia">Ciencia</option>
-    </select>
+    <input
+      type="text"
+      v-model="genero"
+      class="form-control"
+      placeholder="Escribe un genero"
+    />
   </div>
 </template>
 

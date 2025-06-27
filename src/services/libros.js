@@ -57,6 +57,7 @@ export const actualizarLibro = async (id, libroActualizado) => {
 export const eliminarLibro = async (id) => {
     try {
         const response = await axios.delete(`${API_URL}/${id}`);
+        console.log(response)
         return response.data;
     } catch (error) {
         console.error('Error al eliminar el libro:', error);

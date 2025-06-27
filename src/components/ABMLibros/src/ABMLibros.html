@@ -36,6 +36,10 @@
         <h5>{{ libro.titulo }}</h5>
         <p><strong>Autor:</strong> {{ libro.autor }}</p>
         <p><strong>Género:</strong> {{ libro.genero }}</p>
+        <button
+          @click="eliminarLibro(libro.id)"
+          class="btn btn-danger btn-sm"
+          >borrar</button>
       </div>
     </div>
   </div>

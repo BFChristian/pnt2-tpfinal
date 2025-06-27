@@ -4,7 +4,8 @@
         <div class="card-body">
             <h5 class="card-title">{{this.libroData.titulo}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{this.libroData.autor}}</h6>
-            <p class="card-text">{{this.libroData.descripcion}}</p>
+            <p class="card-text">{{extraerGenero(libroData.descripcion)}}</p>
+            <p class="card-text">{{this.libroData.descripcion.slice(0,60).trim()}}...</p>
            
             <a v-if="libroData.previewLink":href="libroData.previewLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
            📖 Más información

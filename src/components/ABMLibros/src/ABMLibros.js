@@ -13,6 +13,9 @@ export default {
     };
   },
   methods: {
+    async eliminarLibro(id) {
+      await useLibroStore().eliminarLibroStore(id);
+    },
     async realizarBusqueda() {
       try {
         this.librosExternos = await buscarLibros(this.busqueda);
