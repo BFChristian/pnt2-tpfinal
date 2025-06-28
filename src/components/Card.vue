@@ -24,6 +24,16 @@
       <a @click="texto = !texto" class="btn btn-primary">
         📖 Más información
       </a>
+
+      <a
+      @click="leer"
+        :href="libroData.link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-success"
+      >
+        📖 leer
+      </a>
     </div>
   </div>
 </template>
@@ -50,7 +60,7 @@ export default {
   },
   computed: {
     leer() {
-      console.log("Leer libro");
+      console.log(this.libroData);
     },
   },
 };
