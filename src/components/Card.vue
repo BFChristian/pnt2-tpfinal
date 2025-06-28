@@ -12,6 +12,7 @@
       <h5 class="card-title">{{ this.libroData.titulo }}</h5>
       <h6 class="card-subtitle mb-2 text-body-secondary">
         {{ this.libroData.autor }}
+        <span class="badge bg-secondary">{{ this.libroData.genero }}</span>
       </h6>
 
       <p v-if="!texto" class="card-text">

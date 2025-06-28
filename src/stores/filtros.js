@@ -4,6 +4,7 @@ export const useFiltroStore = defineStore('filtro', {
   state: () => ({
     titulo: '',
     autor: '',
+    genero: '',
   }),
 })
 

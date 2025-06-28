@@ -36,11 +36,15 @@ export default {
     autor() {
       return storeToRefs(this.filtroStore).autor.value;
     },
+    genero() {
+      return storeToRefs(this.filtroStore).genero.value;
+    },
     librosFiltrados() {
       return this.libros.filter((libro) => {
         const coincideTitulo = !this.titulo || libro.titulo.includes(this.titulo);
         const coincideAutor = !this.autor || libro.autor.includes(this.autor);
-        return coincideAutor && coincideTitulo;
+        const coincideGenero = !this.genero || libro.genero.includes(this.genero);
+        return coincideAutor && coincideTitulo && coincideGenero;
       });
     },
   },

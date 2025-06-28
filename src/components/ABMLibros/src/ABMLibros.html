@@ -12,14 +12,17 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h4>🌐 Libros encontrados (Google Books)</h4>
+      <h4 v-if="buscar">🌐 Libros encontrados (Google Books)</h4>
       <div
         v-for="libro in librosExternos"
         :key="libro.id"
         class="card mb-2 p-2"
       >
         <h5>{{ libro.volumeInfo.title }}</h5>
-        <p>{{ libro.volumeInfo.authors?.join(', ') }}</p>
+        <p>
+          <strong>Autor:</strong> {{ libro.volumeInfo.authors?.join(', ') }}
+        </p>
+        <p><strong>Género:</strong> {{ libro.volumeInfo.categories?.[0] || "General" }}</p>
         <button @click="importarLibro(libro)" class="btn btn-success btn-sm">
           📥 Importar
         </button>
@@ -36,10 +39,9 @@
         <h5>{{ libro.titulo }}</h5>
         <p><strong>Autor:</strong> {{ libro.autor }}</p>
         <p><strong>Género:</strong> {{ libro.genero }}</p>
-        <button
-          @click="eliminarLibro(libro.id)"
-          class="btn btn-danger btn-sm"
-          >borrar</button>
+        <button @click="eliminarLibro(libro.id)" class="btn btn-danger btn-sm">
+          borrar
+        </button>
       </div>
     </div>
   </div>
