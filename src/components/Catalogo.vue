@@ -36,13 +36,15 @@ export default {
     autor() {
       return storeToRefs(this.filtroStore).autor.value;
     },
-    librosFiltrados() {
-      return this.libros.filter((libro) => {
-        const coincideTitulo = !this.titulo || libro.titulo.includes(this.titulo);
-        const coincideAutor = !this.autor || libro.autor.includes(this.autor);
-        return coincideAutor && coincideTitulo;
-      });
-    },
+   librosFiltrados() {
+    return this.libros.filter(libro => {
+      const coincideAutor = !this.autor || 
+        libro.autor.toLowerCase().includes(this.autor.toLowerCase());
+      const coincideTitulo = !this.titulo ||
+        libro.titulo.toLowerCase().includes(this.titulo.toLowerCase());
+      return coincideAutor && coincideTitulo;
+    })
+  }
   },
   methods: {
     async obtenerLibros() {

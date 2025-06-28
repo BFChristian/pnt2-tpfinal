@@ -1,10 +1,14 @@
 import { buscarLibros } from '@/services/posts';
 import { crearLibro } from '@/services/libros';
 import { useLibroStore } from '@/stores/libros'
+import Formulario from '@/components/Formulario.vue'
 
 
 export default {
   name: 'ABMLibros',
+  components: {
+    Formulario
+  },
   data() {
     return {
       busqueda: '',
