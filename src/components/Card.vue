@@ -21,19 +21,22 @@
       <p v-else class="card-text">
         {{ this.libroData.descripcion }}
       </p>
-      <a @click="texto = !texto" class="btn btn-primary">
-        📖 Más información
-      </a>
+     <div class="d-flex gap-2 mt-2">
+  <a @click="texto = !texto" class="btn btn-primary">
+    📖 Más información
+  </a>
 
-      <a
-      @click="leer"
-        :href="libroData.link"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-success"
-      >
-        📖 leer
-      </a>
+  <a
+    @click="leer"
+    :href="libroData.link"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn btn-success"
+  >
+    📖 Leer
+  </a>
+</div>
+
     </div>
   </div>
 </template>
