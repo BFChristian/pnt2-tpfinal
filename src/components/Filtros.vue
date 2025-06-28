@@ -14,6 +14,14 @@
       class="form-control"
       placeholder="Escribe un autor"
     />
+
+    <h6 class="mt-3">Filtrar por genero</h6>
+    <input
+      type="text"
+      v-model="genero"
+      class="form-control"
+      placeholder="Escribe un genero"
+    />
   </div>
 </template>
 
@@ -43,6 +51,14 @@ export default {
       },
       set(value) {
         this.filtroStore.autor = value;
+      },
+    },
+    genero: {
+      get() {
+        return storeToRefs(this.filtroStore).genero.value;
+      },
+      set(value) {
+        this.filtroStore.genero = value;
       },
     },
   },

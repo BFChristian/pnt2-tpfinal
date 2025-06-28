@@ -11,18 +11,20 @@ export default {
   },
   data() {
     return {
-      busqueda: '',
-       librosExternos: [],
-      librosStore: useLibroStore()
+      buscar: false,
+      busqueda: "",
+      librosExternos: [],
+      librosStore: useLibroStore(),
     };
   },
   methods: {
     async eliminarLibro(id) {
-      await useLibroStore().eliminarLibroStore(id);
+      await this.librosStore.eliminarLibroStore(id);
     },
     async realizarBusqueda() {
       try {
         this.librosExternos = await buscarLibros(this.busqueda);
+        this.buscar = true;
       } catch (error) {
         console.error(error);
       }
@@ -31,21 +33,29 @@ export default {
       const info = libro.volumeInfo;
       const nuevoLibro = {
         titulo: info.title,
-        autor: info.authors?.join(', ') || 'Autor desconocido',
-        descripcion: info.description || 'Sin descripción',
-        genero: info.categories?.[0] || 'General',
-        portada: info.imageLinks?.thumbnail || '',
-        pdf: ''
+        autor: info.authors?.join(", ") || "Autor desconocido",
+        descripcion: info.description || "Sin descripción",
+        genero: info.categories?.[0] || "General",
+        portada: info.imageLinks?.thumbnail || "",
+        link: info.previewLink,
       };
-      try {
-        await crearLibro(nuevoLibro);
-        alert('Libro importado a MockAPI correctamente.');
-      } catch (error) {
-        alert('Error al importar el libro.');
+      console.log(info)
+      if (
+        this.librosStore.lista.find(
+          (libro) => libro.titulo === nuevoLibro.titulo
+        )
+      ) {
+        alert("El libro ya existe.");
+      } else {
+        try {
+          await crearLibro(nuevoLibro);
+        } catch (e) {
+          alert("Error al importar el libro.");
+        }
       }
-    }
+    },
   },
   mounted() {
-    this.librosStore.cargarLibros()
+    this.librosStore.cargarLibros();
   },
 };

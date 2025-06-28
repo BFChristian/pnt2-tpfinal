@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "vite --open",
-    "dev": "vite",
+    "start": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview"
   },

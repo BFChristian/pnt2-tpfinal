@@ -11,7 +11,10 @@
       <h4>🌐 Libros encontrados (Google Books)</h4>
       <div v-for="libro in librosExternos" :key="libro.id" class="card mb-2 p-2">
         <h5>{{ libro.volumeInfo.title }}</h5>
-        <p>{{ libro.volumeInfo.authors?.join(', ') }}</p>
+        <p>
+          <strong>Autor:</strong> {{ libro.volumeInfo.authors?.join(', ') }}
+        </p>
+        <p><strong>Género:</strong> {{ libro.volumeInfo.categories?.[0] || "General" }}</p>
         <button @click="importarLibro(libro)" class="btn btn-success btn-sm">
           📥 Importar
         </button>
