@@ -18,7 +18,6 @@ export const useLibroStore = defineStore("libros", {
       try {
         this.lista = this.lista.filter((libro) => libro.id !== id);
         await eliminarLibro(id);
-        alert("Libro eliminado correctamente.");
       } catch (error) {
         console.error("❌ Error al eliminar el libro:", error);
         alert("Error al eliminar el libro.");

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <embed src="/libro_lorem_ipsum.pdf" type="application/pdf" width="100%" height="700px"/>
-            <!--<embed :src="libro.pdf" type="application/pdf" width="100%" height="700px"/>-->
+           
             <p>{{libro.descripcion}}</p>
         </div>
         
@@ -47,4 +47,4 @@ export default {
 </script>
 
 <style scoped>
-</style>
+</style> -->
