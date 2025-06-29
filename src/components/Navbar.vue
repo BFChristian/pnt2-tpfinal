@@ -17,7 +17,7 @@
             <RouterLink class="nav-link" to="/abmlibros">Administrar Libros</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/libro">Libro prueba</RouterLink>
+            <RouterLink class="nav-link" to="/crearopinion">Dejanos tu reseña</RouterLink>
           </li>
         </ul>
       </div>
@@ -34,9 +34,6 @@ export default {
     }
   },
   methods: {
-    goToContadores() {
-      this.$router.push('/contadores')
-    }
   },
   computed: {
 

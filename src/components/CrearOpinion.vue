@@ -78,7 +78,7 @@
 
 <script>
 export default {
-  name: 'Formulario',
+  name: 'CrearOpinion',
   data() {
     return {
       formData: this.getInicialData(),
