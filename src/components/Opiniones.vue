@@ -6,7 +6,7 @@
           <h5 class="text-primary">
             {{ opinion.titulo }}
           </h5>
-          <p>de</p>
+          <p>Reseña hecha por</p>
           <h6 class="text-secondary">
             {{ opinion.autor }}
           </h6>
