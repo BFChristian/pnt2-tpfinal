@@ -1,7 +1,8 @@
 import axios from "axios";
-
+import { ENV_VARIABLES } from "../../config";
 // const API_URL = 'https://64f8b230824680fd218f9e5f.mockapi.io/api/libros';
-const API_URL = "https://685c18ee89952852c2dc36c9.mockapi.io/libros";
+const API_URL = `https://${ENV_VARIABLES.API_KEY}.mockapi.io/libros`;
+
 
 export const guardarLibro = async (libro) => {
   try {

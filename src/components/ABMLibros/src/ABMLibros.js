@@ -2,14 +2,12 @@ import { buscarLibros } from '@/services/posts';
 import { crearLibro } from '@/services/libros';
 import { useLibroStore } from '@/stores/libros';
 import { useModalStore } from '@/stores/modalStore';
-import Formulario from '@/components/Formulario.vue';
 import Modal from '@/components/Modal.vue'
 
 
 export default {
   name: 'ABMLibros',
   components: {
-    Formulario,
     Modal,
   },
   data() {
