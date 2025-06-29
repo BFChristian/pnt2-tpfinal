@@ -17,7 +17,7 @@
             <RouterLink class="nav-link" to="/abmlibros">Administrar Libros</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/libro">Libro prueba</RouterLink>
+            <RouterLink class="nav-link" to="/abmReseñas">Administrar Reseñas</RouterLink>
           </li>
         </ul>
       </div>
