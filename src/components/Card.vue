@@ -28,7 +28,7 @@
 
   <a
     @click="leer"
-    :href="libroData.link"
+    
     target="_blank"
     rel="noopener noreferrer"
     class="btn btn-success"
@@ -60,11 +60,17 @@ export default {
     errorImagen(event) {
       event.target.src = "/no-disponible.webp";
     },
-  },
-  computed: {
-    leer() {
-      console.log(this.libroData);
+     leer() {
+        if (this.libroData.link) {
+      window.open(this.libroData.link, '_blank');
+    } else {
+      alert("Este libro no tiene vista previa disponible.");
+    }
+  }
     },
+    
+  computed: {
+   
   },
 };
 </script>

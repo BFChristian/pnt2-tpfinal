@@ -1,11 +1,20 @@
 <template>
-    <div class="container">
-        <div class="row overflow-auto">
-            <div class="col-md-4 mb-4" v-for="libro in librosFiltrados" :key="libro.id">
-                <Card :libroData="libro" />
-            </div>
-        </div>
+  <div class="container">
+    <div class="row overflow-auto">
+      <div
+        class="col-md-4 mb-4"
+        v-for="libro in librosFiltrados"
+        :key="libro.id"
+      >
+
+        <Card :libroData="libro" />
+      </div>
+      <div v-if="librosFiltrados.length === 0" class="alert alert-warning w-100">
+  ⚠️ No hay libros que coincidan con los filtros de búsqueda.
+     </div>
+
     </div>
+  </div>
 </template>
 
 <script>
