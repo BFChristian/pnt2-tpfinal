@@ -2,7 +2,7 @@ import axios from "axios";
 
 const RESEÑAS = "./assets/reseñas.json";
 
-export const guardarReseña = async (reseña) => {
+export const crearReseña = async (reseña) => {
   try {
     const response = await axios.post(RESEÑAS, reseña);
     return response.data;

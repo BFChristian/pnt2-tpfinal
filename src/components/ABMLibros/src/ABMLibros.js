@@ -1,13 +1,12 @@
-import { buscarLibros } from '@/services/posts';
-import { crearLibro } from '@/services/libros';
-import { useLibroStore } from '@/stores/libros'
-import Formulario from '@/components/Formulario.vue'
-
+import { buscarLibros } from "@/services/posts";
+import { crearLibro } from "@/services/libros";
+import { useLibroStore } from "@/stores/libros";
+import Formulario from "@/components/Formulario.vue";
 
 export default {
-  name: 'ABMLibros',
+  name: "ABMLibros",
   components: {
-    Formulario
+    Formulario,
   },
   data() {
     return {
@@ -39,7 +38,7 @@ export default {
         portada: info.imageLinks?.thumbnail || "",
         link: info.previewLink,
       };
-      console.log(info)
+      console.log(info);
       if (
         this.librosStore.lista.find(
           (libro) => libro.titulo === nuevoLibro.titulo

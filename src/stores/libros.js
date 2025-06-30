@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
-import { getLibros } from "@/services/libros";
-import { eliminarLibro } from "@/services/libros";
+import { getLibros, eliminarLibro } from "@/services/libros";
 
 export const useLibroStore = defineStore("libros", {
   state: () => ({

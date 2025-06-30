@@ -1,4 +1,4 @@
-import { getReseñas } from "@/services/reseñas";
+import { getReseñas,eliminarReseña } from "@/services/reseñas";
 import { defineStore } from "pinia";
 
 export const useReseñaStore = defineStore("reseñas", {
@@ -16,7 +16,7 @@ export const useReseñaStore = defineStore("reseñas", {
      async eliminarReseñaStore(id) {
           try {
             this.lista = this.lista.filter((reseña) => reseña.id !== id);
-            await eleminarReseña(id);
+            await eliminarReseña(id);
             alert("Reseña eliminada correctamente.");
           } catch (error) {
             console.error("❌ Error al eliminar la reseña:", error);
