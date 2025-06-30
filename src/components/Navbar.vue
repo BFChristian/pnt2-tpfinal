@@ -1,7 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2">
     <div class="container-fluid">
-      <RouterLink class="navbar-brand" to="/">ORTeneo</RouterLink>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +16,7 @@
             <RouterLink class="nav-link" to="/abmlibros">Administrar Libros</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/libro">Libro prueba</RouterLink>
+            <RouterLink class="nav-link" to="/crearopinion">Dejanos tu reseña</RouterLink>
           </li>
         </ul>
       </div>
@@ -34,9 +33,6 @@ export default {
     }
   },
   methods: {
-    goToContadores() {
-      this.$router.push('/contadores')
-    }
   },
   computed: {
 

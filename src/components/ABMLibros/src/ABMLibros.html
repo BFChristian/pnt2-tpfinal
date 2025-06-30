@@ -1,0 +1,68 @@
+<div class="container">
+
+
+
+  <div v-if="mensaje"
+    :class="['alert', mensajeTipo === 'success' ? 'alert-success' : 'alert-danger', 'alert-dismissible', 'fade', 'show']"
+    role="alert">
+    {{ mensaje }}
+    <button type="button" class="btn-close" aria-label="Close" @click="cerrarMensaje"></button>
+  </div>
+
+
+  <h2>📚 Buscar libros para importar</h2>
+
+  <input v-model="busqueda" type="text" placeholder="Buscar libros en Google Books..." class="form-control my-3" />
+
+  <button @click="realizarBusqueda" class="btn btn-primary mb-3">
+    🔍 Buscar
+  </button>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <h4>🌐 Libros encontrados (Google Books)</h4>
+
+      <div v-if="buscar && librosExternos.length === 0" class="alert alert-warning">
+        ⚠️ No hay libros que coincidan con tu búsqueda.
+      </div>
+
+
+      <div v-for="libro in librosExternos" :key="libro.id" class="card mb-2 p-2">
+
+        <h5>{{ libro.volumeInfo.title }}</h5>
+        <p>
+          <strong>Autor:</strong> {{ libro.volumeInfo.authors?.join(', ') }}
+        </p>
+
+        <p><strong>Género:</strong> {{ libro.volumeInfo.categories?.[0] || "General" }}</p>
+
+        <button @click="importarLibro(libro)" class="btn btn-success btn-sm">
+          📥 Importar
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <h4>🗃️ Libros guardados en MockAPI</h4>
+
+      <div v-for="libro in librosStore.lista" :key="libro.id" class="card mb-2 p-2 bg-light">
+
+        <h5>{{ libro.titulo }}</h5>
+
+        <p><strong>Autor:</strong> {{ libro.autor }}</p>
+
+        <p><strong>Género:</strong> {{ libro.genero }}</p>
+
+        <button @click="confirmarEliminacion(libro.id)" class="btn btn-danger btn-sm">
+          Borrar
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <Modal />
+</div>
