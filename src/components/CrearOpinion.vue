@@ -89,15 +89,24 @@
     
     </div>
   </section>
+  <Modal />
 </template>
 
 <script>
+import { guardarOpinion } from '@/services/opiniones';
+import { useModalStore } from '@/stores/modalStore';
+import Modal from '@/components/Modal.vue'
+
 export default {
   name: 'CrearOpinion',
+  components: {
+    Modal,
+  },
   data() {
     return {
       formData: this.getInicialData(),
-      formDirty: this.getInicialData()
+      formDirty: this.getInicialData(),
+      modalStore: useModalStore(),
     }
   },
   methods: {
@@ -117,10 +126,28 @@ export default {
     },
     enviar() {
       console.log('Reseña enviada:', { ...this.formData })
-      alert('✅ ¡Reseña agregada exitosamente!')
+
+      this.enviarOpinion({ ...this.formData })
 
       this.formData = this.getInicialData()
       this.formDirty = this.getInicialData()
+    },
+    async enviarOpinion(data) {
+      try {
+        await guardarOpinion(data);
+        this.modalStore.abrirModal(
+          'Reseña guardada',
+          '✅ Reseña guardada correctamente.',
+          'success'
+        );
+      } catch (error) {
+        console.error(error);
+        this.modalStore.abrirModal(
+          'Error',
+          '❌ Error al guardar la reseña.',
+          'danger'
+        );
+      }
     }
   },
   computed: {

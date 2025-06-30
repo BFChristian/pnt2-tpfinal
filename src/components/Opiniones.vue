@@ -6,12 +6,12 @@
           <h5 class="text-primary">
             {{ opinion.titulo }}
           </h5>
-          <p>Reseña hecha por</p>
-          <h6 class="text-secondary">
+          <p class="text-secondary">Reseña hecha por</p>
+          <h6 class="text-primary">
             {{ opinion.autor }}
           </h6>
           <p>⭐ {{ opinion.rating }} / 5</p>
-          <p class="mb-0">"{{ opinion.comentarios }}"</p>
+          <p class="mb-0 overflow-auto">"{{ opinion.comentarios.slice(0, 120).trim() }}"</p>
           <hr />
         </div>
       </div>
