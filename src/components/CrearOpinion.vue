@@ -67,11 +67,26 @@
 
         <button
           class="btn btn-success my-3"
-          :disabled="validarBotonEnvio()"
-        >
+          :disabled="validarBotonEnvio()">
+        
           Agregar Reseña
+        
         </button>
+      
       </form>
+      
+      <div class="mt-4 border-top pt-3">
+     
+        <h5>Mis reseñas</h5>
+     
+        <button class="btn btn-primary mt-2">
+       
+          ✏️ Editar
+     
+        </button>
+     
+      </div>
+    
     </div>
   </section>
 </template>

@@ -31,9 +31,6 @@ export default {
       opiniones: [],
     };
   },
-  mounted() {
-    
-  },
   methods: {
     async obtenerOpiniones() {
         try {

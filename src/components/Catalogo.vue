@@ -35,15 +35,9 @@ export default {
         };
     },
     computed: {
-        titulo() {
-            return storeToRefs(this.filtroStore).titulo.value;
-        },
-        autor() {
-            return storeToRefs(this.filtroStore).autor.value;
-        },
-        genero() {
-            return storeToRefs(this.filtroStore).genero.value;
-        },
+        titulo() { return this.filtroStore.titulo; },
+        autor() { return this.filtroStore.autor; },
+        genero() { return this.filtroStore.genero; }, 
         librosFiltrados() {
             return this.libros.filter(libro => {
                 const coincideAutor = !this.autor ||

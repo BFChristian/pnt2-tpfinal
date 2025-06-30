@@ -87,9 +87,8 @@ export default {
       }
 
       try {
-        await this.librosStore.lista.push(nuevoLibro);
         await crearLibro(nuevoLibro);
-        this.librosStore.cargarLibros(); // refrescar desde API
+        await this.librosStore.cargarLibros(); // refrescar desde API
         this.modalStore.abrirModal(
           'Libro agregado',
           '✅ Libro agregado correctamente.',
