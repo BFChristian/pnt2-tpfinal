@@ -2,18 +2,23 @@
   <div class="container">
     <div class="row vh-100">
       <div class="border p-3 h-100 overflow-auto">
+       
         <div v-for="opinion in opiniones" :key="opinion" class="mb-3">
+        
           <h5 class="text-primary">
             {{ opinion.titulo }}
           </h5>
+          
           <p class="text-secondary">Reseña hecha por</p>
           <h6 class="text-primary">
             {{ opinion.autor }}
           </h6>
+          
           <p>⭐ {{ opinion.rating }} / 5</p>
           <p class="mb-0 overflow-auto">"{{ opinion.comentarios.slice(0, 120).trim() }}"</p>
           <hr />
         </div>
+      
       </div>
     </div>
   </div>
@@ -27,7 +32,7 @@ export default {
   props: [],
   data() {
     return {
-      currentIndex: 0, // Agrego esta inicialización, para que no falle al primer acceso.
+      currentIndex: 0, 
       
     };
   },

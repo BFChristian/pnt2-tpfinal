@@ -1,4 +1,3 @@
-// src/services/librosExternos.js
 import axios from 'axios';
 
 const GOOGLE_BOOKS_API = 'https://www.googleapis.com/books/v1/volumes';

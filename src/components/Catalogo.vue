@@ -9,14 +9,14 @@
 
         <Card :libroData="libro" />
       </div>
-           <!-- Mensaje si no hay libros en absoluto -->
+           
       <div
         v-if="!cargandoLibros && librosStore.lista.length === 0"
         class="alert alert-info w-100">
         ℹ️ Aún no tenés ningún libro. Guardá un libro en <strong>Administrar Libros</strong> y empezá a disfrutar.
       </div>
 
-      <!-- Mensaje si hay libros, pero ninguno coincide con los filtros -->
+      
       <div
         v-else-if="!cargandoLibros && librosFiltrados.length === 0"
         class="alert alert-warning w-100">

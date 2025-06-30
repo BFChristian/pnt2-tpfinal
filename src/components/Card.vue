@@ -56,7 +56,7 @@ export default {
     };
   },
   methods: {
-    // Aquí puedes definir tus métodos
+    
     errorImagen(event) {
       event.target.src = "/no-disponible.webp";
     },

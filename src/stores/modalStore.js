@@ -6,7 +6,7 @@ export const useModalStore = defineStore('modal', {
     titulo: '',
     mensaje: '',
     tipo: 'info',
-    onConfirm: null // callback opcional
+    onConfirm: null 
   }),
   actions: {
     abrirModal(titulo, mensaje, tipo = 'info', onConfirm = null) {

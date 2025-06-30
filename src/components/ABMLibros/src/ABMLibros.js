@@ -52,11 +52,11 @@ export default {
     async realizarBusqueda() {
   try {
     const resultado = await buscarLibros(this.busqueda);
-    this.librosExternos = resultado || []; // Asegurarse que sea array
+    this.librosExternos = resultado || []; 
     this.buscar = true;
   } catch (error) {
     console.error(error);
-    this.librosExternos = []; // También en caso de error, que no quede undefined
+    this.librosExternos = []; 
   }
 },
     async importarLibro(libro) {
@@ -71,7 +71,7 @@ export default {
 
       };
 
-      // Verificar si ya existe
+      
       const yaExiste = this.librosStore.lista.some(libroGuardado =>
         libroGuardado.titulo === nuevoLibro.titulo &&
         libroGuardado.autor === nuevoLibro.autor
@@ -88,7 +88,7 @@ export default {
 
       try {
         await crearLibro(nuevoLibro);
-        await this.librosStore.cargarLibros(); // refrescar desde API
+        await this.librosStore.cargarLibros(); 
         this.modalStore.abrirModal(
           'Libro agregado',
           '✅ Libro agregado correctamente.',
