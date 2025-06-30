@@ -65,29 +65,52 @@
           </div>
         </div>
 
-        <button
-          class="btn btn-success my-3"
-          :disabled="validarBotonEnvio()">
-        
-          Agregar Reseña
-        
-        </button>
+       <button
+  class="btn btn-success my-3"
+  :disabled="validarBotonEnvio()"
+>
+  {{ modoEdicion ? 'Actualizar Reseña' : 'Agregar Reseña' }}
+</button>
+
+<!-- Botón Cancelar visible solo en modo edición -->
+<button
+  v-if="modoEdicion"
+  class="btn btn-secondary ms-2 my-3"
+  @click="cancelarEdicion"
+>
+  Cancelar
+</button>
       
       </form>
       
       <div class="mt-4 border-top pt-3">
-     
-        <h5>Mis reseñas</h5>
-     
-        <button class="btn btn-primary mt-2">
-       
-          ✏️ Editar
-     
-        </button>
-     
-      </div>
+          <h5>Mis reseñas</h5>
+
+           <div v-if="!cargandoOpiniones && opiniones.length === 0" class="text-muted">
+            Aún no agregaste ninguna reseña.
+        </div>
+
+      <div v-for="opinion in opiniones" :key="opinion.id" class="mt-2">
+           <h6 class="text-primary">{{ opinion.titulo }}</h6>
+          <p class="mb-0 text-secondary">{{ opinion.autor }}</p>
+          <p>⭐ {{ opinion.rating }} / 5</p>
+          <p class="mb-0">"{{ opinion.comentarios.slice(0, 100).trim() }}"</p>
+           <button class="btn btn-sm btn-outline-primary me-2 mt-3" @click="editarOpinion(opinion)" 
+           :disabled="modoEdicion && opinionIdEditando === opinion.id">
+             ✏️ Editar Reseña
+           </button>
+           <button 
+            class="btn btn-sm btn-outline-danger mt-3"
+           @click="confirmarEliminarOpinion(opinion.id)" 
+           :disabled="modoEdicion && opinionIdEditando === opinion.id">
+           🗑️ Eliminar
+          </button>
+
+          <hr />
+       </div>
+     </div>
     
-    </div>
+     </div>
   </section>
   <Modal />
 </template>
@@ -95,6 +118,7 @@
 <script>
 import { guardarOpinion } from '@/services/opiniones';
 import { useModalStore } from '@/stores/modalStore';
+import { useOpinionStore } from '@/stores/opiniones'
 import Modal from '@/components/Modal.vue'
 
 export default {
@@ -107,6 +131,10 @@ export default {
       formData: this.getInicialData(),
       formDirty: this.getInicialData(),
       modalStore: useModalStore(),
+      opinionStore: useOpinionStore(),
+      modoEdicion: false,
+      opinionIdEditando: null,
+      opinionIdEditando: null,
     }
   },
   methods: {
@@ -124,17 +152,27 @@ export default {
              !this.errorComentarios.ok ||
              !this.errorRating.ok
     },
-    enviar() {
-      console.log('Reseña enviada:', { ...this.formData })
+    async enviar() {
+  if (this.modoEdicion) {
+    await this.opinionStore.actualizarOpinionStore(this.opinionIdEditando, { ...this.formData });
+    this.modalStore.abrirModal(
+      'Reseña actualizada',
+      '✅ Reseña actualizada correctamente.',
+      'success'
+    );
+  } else {
+    await this.enviarOpinion({ ...this.formData });
+  }
 
-      this.enviarOpinion({ ...this.formData })
-
-      this.formData = this.getInicialData()
-      this.formDirty = this.getInicialData()
-    },
+  this.formData = this.getInicialData();
+  this.formDirty = this.getInicialData();
+  this.modoEdicion = false;
+  this.opinionIdEditando = null;
+},
     async enviarOpinion(data) {
       try {
-        await guardarOpinion(data);
+       const nuevaOpinion = await guardarOpinion(data);
+      this.opinionStore.lista.push(nuevaOpinion); // <--- ACTUALIZAR LISTA
         this.modalStore.abrirModal(
           'Reseña guardada',
           '✅ Reseña guardada correctamente.',
@@ -148,8 +186,66 @@ export default {
           'danger'
         );
       }
+    },
+    editarOpinion(opinion) {
+    this.formData = { ...opinion };
+    this.formDirty = {
+      titulo: true,
+      autor: true,
+      comentarios: true,
+      rating: true
+    };
+    this.modoEdicion = true;
+    this.opinionIdEditando = opinion.id;
+  },
+  cancelarEdicion() {
+    this.modoEdicion = false;
+    this.opinionIdEditando = null;
+    this.formData = this.getInicialData();
+    this.formDirty = this.getInicialData();
+  },
+   confirmarEliminarOpinion(id) {
+    this.modalStore.abrirModal(
+      'Confirmar eliminación',
+      '¿Estás seguro que quieres eliminar esta reseña?',
+      'danger',
+      () => this.ejecutarEliminacion(id)
+    );
+  },
+  async ejecutarEliminacion(id) {
+    try {
+      await this.opinionStore.eliminarOpinionStore(id);
+      this.modalStore.abrirModal(
+        'Reseña eliminada',
+        '✅ Reseña eliminada correctamente.',
+        'success'
+      );
+    } catch (error) {
+      console.error(error);
+      this.modalStore.abrirModal(
+        'Error',
+        '❌ Error al eliminar la reseña.',
+        'danger'
+      );
     }
   },
+  async actualizarOpinion(id, data) {
+  try {
+    const actualizada = await actualizarOpinion(id, data);
+    const index = this.opinionStore.lista.findIndex(o => o.id === id);
+    if (index !== -1) {
+      this.opinionStore.lista.splice(index, 1, actualizada);
+    }
+  } catch (error) {
+    console.error(error);
+    this.modalStore.abrirModal(
+      'Error',
+      '❌ Error al actualizar la reseña.',
+      'danger'
+    );
+  }
+},
+},
   computed: {
     errorTitulo() {
       let mensaje = ""
@@ -191,8 +287,20 @@ export default {
         mensaje,
         ok: mensaje === ""
       }
-    }
-  }
+    },
+    opiniones() {
+    return this.opinionStore.lista;
+  },
+    cargandoOpiniones() {
+    return this.opinionStore.cargando;
+  },
+
+  },
+  mounted() {
+  this.opinionStore.cargarOpiniones();
+}
+
+
 }
 </script>
 

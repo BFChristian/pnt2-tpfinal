@@ -5,13 +5,17 @@ import { eliminarLibro } from "@/services/libros";
 export const useLibroStore = defineStore("libros", {
   state: () => ({
     lista: [],
+    cargando: false,
   }),
   actions: {
     async cargarLibros() {
+      this.cargando = true;
       try {
         this.lista = await getLibros();
       } catch (e) {
         console.error("❌ Error al cargar libros desde MockAPI:", e);
+      } finally {
+        this.cargando = false;
       }
     },
     async eliminarLibroStore(id) {

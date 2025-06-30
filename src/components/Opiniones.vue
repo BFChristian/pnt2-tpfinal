@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { getOpiniones } from "@/services/opiniones";
+import { useOpinionStore } from "@/stores/opiniones";
 
 export default {
   name: "opiniones",
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       currentIndex: 0, // Agrego esta inicialización, para que no falle al primer acceso.
-      opiniones: [],
+      
     };
   },
   methods: {
@@ -42,9 +42,13 @@ export default {
         }
     },
   },
-  computed: {},
+  computed: {
+    opiniones() {
+      return useOpinionStore().lista;
+    },
+  },
   mounted() {
-    this.obtenerOpiniones();
+    useOpinionStore().cargarOpiniones();
   }
 };
 </script>
